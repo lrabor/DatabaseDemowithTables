@@ -41,9 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Contacts contacts = new Contacts(firstNameEditText.getText().toString(), lastNameEditText.getText().toString());
         dbHandler.addProduct(contacts);
 
+        // clear the text fields
         firstNameEditText.setText("");
         lastNameEditText.setText("");
-
+        // request focus on the firstname
+        firstNameEditText.requestFocus();
     }
 
     // delete items
@@ -51,10 +53,16 @@ public class MainActivity extends AppCompatActivity {
         String firstname = firstNameEditText.getText().toString();
         String lastname = lastNameEditText.getText().toString();
         dbHandler.deleteProduct(firstname, lastname);
+
+        // clear the text fields
+        firstNameEditText.setText("");
+        lastNameEditText.setText("");
+        // request focus on the firstname
+        firstNameEditText.requestFocus();
     }
 
-
     public void displayClick(View view) {
+        // open up a new screen
         Intent i = new Intent(this, DisplayListActivity.class);
         startActivity(i);
     }

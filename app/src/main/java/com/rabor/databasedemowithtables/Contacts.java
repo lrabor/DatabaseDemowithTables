@@ -6,6 +6,7 @@ package com.rabor.databasedemowithtables;
 
 public class Contacts {
 
+    // define variables for the columns
     private int _id;
     private String firstname;
     private String lastname;
@@ -15,11 +16,13 @@ public class Contacts {
 
     }
 
+    // constructor
     public Contacts(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
 
+    // getters
     public int get_id() {
         return _id;
     }
@@ -28,16 +31,17 @@ public class Contacts {
         return firstname;
     }
 
+    public String get_lastname() {
+        return lastname;
+    }
+
+    // setters
     public void set_id(int _id) {
         this._id = _id;
     }
 
     public void set_firstname(String firstname) {
         this.firstname = firstname;
-    }
-
-    public String get_lastname() {
-        return lastname;
     }
 
     public void set_lastname(String lastname) {

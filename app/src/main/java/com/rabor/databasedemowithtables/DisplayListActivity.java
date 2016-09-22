@@ -8,14 +8,13 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 public class DisplayListActivity extends ActionBarActivity {
 
+    // define the widget variable layout
     private TableLayout table_layout;
 
     // define SQL controller variable
@@ -26,16 +25,17 @@ public class DisplayListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_list);
 
+        // get reference to the layout widget
         table_layout = (TableLayout) findViewById(R.id.tableLayout1);
 
-        // instantiate the controller constructor
+        // instantiate the handler constructor
         dbHandler = new MyDBHandler(this);
 
         // call the build table method
         BuildTable();
-
     }
 
+    // responsible for building the table
      private void BuildTable() {
 
         dbHandler.open();
@@ -75,7 +75,8 @@ public class DisplayListActivity extends ActionBarActivity {
             table_layout.addView(row);
 
         }
+
+        // close the database
         dbHandler.close();
     }
-
 }

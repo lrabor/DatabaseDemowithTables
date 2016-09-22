@@ -11,11 +11,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MyDBHandler extends SQLiteOpenHelper {
 
+    // define database variables
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "contacts.db";
     public static final String TABLE_CONTACTS = "contacts";
@@ -23,12 +21,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_FIRSTNAME = "firstname";
     public static final String COLUMN_LASTNAME = "lastname";
 
+    // define sqlite database variable
     private SQLiteDatabase database;
 
+    // constructor
     public MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // responsible for creating a table for the first time
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -40,15 +41,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     }
 
+    // responsible for making updates to an existing table
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        // delete the entire table if it exists
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        // recreate the table with the new properties
         onCreate(db);
     }
 
     public MyDBHandler open() throws SQLException {
-        database = getWritableDatabase();
+        database = getWritableDatabase();   // get reference to the database
         return this;
     }
 
@@ -58,25 +62,28 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     // Add new row to the database
     public void addProduct(Contacts product) {
+        // content values is built into Android that allows you to add several values in one statement
         ContentValues values = new ContentValues();
         values.put(COLUMN_FIRSTNAME, product.get_firstname());
         values.put(COLUMN_LASTNAME, product.get_lastname());
         SQLiteDatabase db =  getWritableDatabase();
         db.insert(TABLE_CONTACTS, null, values);
 
+        // once your are done with database, then close it out to give memory back
         close();
     }
 
     // Delete a product from the database
     public void deleteProduct (String firstname, String lastname) {
 
+        // get reference to the database
         SQLiteDatabase db = getWritableDatabase();
+        // delete the row with matching firstname and lastname
         db.execSQL("DELETE FROM " + TABLE_CONTACTS + " WHERE " + COLUMN_FIRSTNAME + "=\"" + firstname + "\"" +
                 " AND " + COLUMN_LASTNAME + "=\"" + lastname + "\";");
     }
 
     public Cursor readEntry() {
-        // TODO Auto-generated method stub
         String[] allColumns = new String[] {
                 COLUMN_ID, COLUMN_FIRSTNAME,
                 COLUMN_LASTNAME
@@ -91,35 +98,4 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return c;
 
     }
-
-    // print out the database as a string
-    public List<Contacts> databaseToString() {
-        List<Contacts> contacts = new ArrayList<Contacts>();
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_CONTACTS + " WHERE 1";
-
-        // cursor point to a location in your results
-        Cursor c = db.rawQuery(query, null);
-        // move to the first row in your results
-        c.moveToFirst();
-
-        while(!c.isAfterLast()) {
-            Contacts contact = cursorToContact(c);
-            contacts.add(contact);
-            c.moveToNext();
-        }
-
-        db.close();
-        //return dbString;
-        return contacts;
-     }
-
-    private Contacts cursorToContact(Cursor c) {
-        Contacts product = new Contacts();
-        product.set_id(c.getInt(0));
-        product.set_firstname(c.getString(1));
-        product.set_lastname(c.getString(2));
-        return product;
-    }
-
 }

@@ -5,44 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <EditText
-            android:id="@+id/fistname_et_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="firstName" />
-
-        <EditText
-            android:id="@+id/lastname_et_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="lastname" />
-
-        <Button
-            android:id="@+id/addmem_btn_id"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Add" />
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <TableLayout
-            android:id="@+id/tableLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:shrinkColumns="*"
-            android:stretchColumns="*" >
-        </TableLayout>
-    </ScrollView-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,7 +14,9 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_firstname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <EditText
                 android:layout_width="match_parent"
@@ -62,7 +26,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:inputType="text"/>
+                android:inputType="text">
+
+                <requestFocus />
+            </EditText>
 
         </android.support.design.widget.TextInputLayout>
 
