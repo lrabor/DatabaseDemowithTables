@@ -13,5 +13,27 @@
         android:padding="10dp"
         android:shrinkColumns="*"
         android:stretchColumns="*" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border">
+
+            <TextView
+                style="@style/MyTextView.Label"
+                android:id="@+id/idTV"
+                android:text="@string/id"/>
+
+            <TextView
+                style="@style/MyTextView.Label"
+                android:id="@+id/firstTV"
+                android:text="@string/first"/>
+
+            <TextView
+                style="@style/MyTextView.Label"
+                android:id="@+id/lastTV"
+                android:text="@string/last"/>
+
+        </TableRow>
     </TableLayout>
 </ScrollView>

@@ -19,14 +19,9 @@
             android:focusableInTouchMode="true">
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/MyTextView.EditText"
                 android:id="@+id/firstNameEditText"
-                android:hint="First Name"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:inputType="text">
+                android:hint="@string/first_name" >
 
                 <requestFocus />
             </EditText>
@@ -39,49 +34,35 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/MyTextView.EditText"
                 android:id="@+id/lastNameEditText"
-                android:hint="Last Name"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:inputType="text"/>
+                android:hint="@string/last_name" />
 
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MyTextView.Button"
             android:text="@string/add"
             android:id="@+id/addButton"
-            android:layout_marginTop="38dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:onClick="addClick"
-            android:background="@drawable/btn_pink_glossy" />
+            android:onClick="addClick" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MyTextView.Button"
             android:text="@string/delete"
             android:id="@+id/deleteButton"
-            android:onClick="deleteClick"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btn_pink_glossy"/>
+            android:onClick="deleteClick" />
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MyTextView.Button"
             android:text="@string/show_all"
             android:id="@+id/showAllButton"
-            android:onClick="displayClick"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btn_pink_glossy"/>
+            android:onClick="displayClick" />
+
+        <Button
+            style="@style/MyTextView.Button"
+            android:text="@string/delete_all"
+            android:id="@+id/deleteAllButton"
+            android:onClick="deleteAllClick" />
 
     </LinearLayout>
 

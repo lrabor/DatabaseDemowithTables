@@ -56,31 +56,38 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return this;
     }
 
- /*   public void close() {
-        database.close();
-    }*/
-
     // Add new row to the database
-    public void addProduct(Contacts product) {
+    public void addContact(Contacts contact) {
         // content values is built into Android that allows you to add several values in one statement
         ContentValues values = new ContentValues();
-        values.put(COLUMN_FIRSTNAME, product.get_firstname());
-        values.put(COLUMN_LASTNAME, product.get_lastname());
-        SQLiteDatabase db =  getWritableDatabase();
-        db.insert(TABLE_CONTACTS, null, values);
+        values.put(COLUMN_FIRSTNAME, contact.get_firstname());
+        values.put(COLUMN_LASTNAME, contact.get_lastname());
+
+        // call the open method to get reference to the database
+        open();
+        database.insert(TABLE_CONTACTS, null, values);
 
         // once your are done with database, then close it out to give memory back
         close();
     }
 
-    // Delete a product from the database
-    public void deleteProduct (String firstname, String lastname) {
+    // Delete a contact from the database
+    public void deleteContact (String firstname, String lastname) {
 
-        // get reference to the database
-        SQLiteDatabase db = getWritableDatabase();
+        // call the open method to get reference to the database
+         open();
         // delete the row with matching firstname and lastname
-        db.execSQL("DELETE FROM " + TABLE_CONTACTS + " WHERE " + COLUMN_FIRSTNAME + "=\"" + firstname + "\"" +
+        database.execSQL("DELETE FROM " + TABLE_CONTACTS + " WHERE " + COLUMN_FIRSTNAME + "=\"" + firstname + "\"" +
                 " AND " + COLUMN_LASTNAME + "=\"" + lastname + "\";");
+    }
+
+    // Delete all contacts from the database
+    public void deleteAllContacts () {
+
+        // call the open method to get reference to the database
+        open();
+        // delete all records from the database
+        database.execSQL("DELETE FROM " + TABLE_CONTACTS + ";");
     }
 
     public Cursor readEntry() {
@@ -95,6 +102,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         if (c != null) {
             c.moveToFirst();
         }
+
         return c;
 
     }

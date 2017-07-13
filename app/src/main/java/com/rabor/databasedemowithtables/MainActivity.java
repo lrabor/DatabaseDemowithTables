@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     // define widget variables
@@ -16,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Button addButton;
     private Button deleteButton;
     private Button showAllButton;
+    private Button deleteAllButton;
 
     // define database handler
     MyDBHandler dbHandler;
@@ -34,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.addButton);
         deleteButton = (Button) findViewById(R.id.deleteButton);
         showAllButton = (Button) findViewById(R.id.showAllButton);
+        deleteAllButton = (Button) findViewById(R.id.deleteAllButton);
     }
 
-    // add a product to the database
+    // add a contact to the database
     public void addClick(View view) {
         Contacts contacts = new Contacts(firstNameEditText.getText().toString(), lastNameEditText.getText().toString());
-        dbHandler.addProduct(contacts);
+        dbHandler.addContact(contacts);
 
         // clear the text fields
         firstNameEditText.setText("");
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public void deleteClick(View view) {
         String firstname = firstNameEditText.getText().toString();
         String lastname = lastNameEditText.getText().toString();
-        dbHandler.deleteProduct(firstname, lastname);
+        dbHandler.deleteContact(firstname, lastname);
 
         // clear the text fields
         firstNameEditText.setText("");
@@ -67,4 +67,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    // delete all items
+    public void deleteAllClick(View view) {
+        dbHandler.deleteAllContacts();
+
+        // clear the text fields
+        firstNameEditText.setText("");
+        lastNameEditText.setText("");
+        // request focus on the firstname
+        firstNameEditText.requestFocus();
+    }
 }

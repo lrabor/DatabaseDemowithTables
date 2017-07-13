@@ -6,13 +6,16 @@ package com.rabor.databasedemowithtables;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class DisplayListActivity extends ActionBarActivity {
+public class DisplayListActivity extends AppCompatActivity {
 
     // define the widget variable layout
     private TableLayout table_layout;
@@ -24,6 +27,9 @@ public class DisplayListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_list);
+
+        // navigate up to the parent class
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // get reference to the layout widget
         table_layout = (TableLayout) findViewById(R.id.tableLayout1);
@@ -79,4 +85,5 @@ public class DisplayListActivity extends ActionBarActivity {
         // close the database
         dbHandler.close();
     }
+
 }
